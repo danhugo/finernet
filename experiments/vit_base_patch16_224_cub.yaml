@@ -1,0 +1,30 @@
+DATA:
+  DATASET: cub
+  FULL_PATH: data/cub/CUB_200_2011/images
+  TRAIN_PATH: data/cub/CUB_200_2011/train
+  TEST_PATH: data/cub/CUB_200_2011/test
+  NUM_CLASSES: 200
+  FAISS_TRAIN_FILE: faiss/cub/train_nns_top7_vit_base_patch16_224.npy 
+  FAISS_TEST_FILE: faiss/cub/test_nns_vit_base_patch16_224.npy
+  AUG_TRAIN_DATA_PATH: data/cub/CUB_200_2011/train_nns_top7_vit_base_patch16_224
+
+EXP:
+  MODEL: 'vit_base_patch16_224'
+  CLASS:
+    PATH: best_models/class-cub-vit_base_patch16_224-imagenet-356.pt
+    BS: 256
+    EPOCH: 100
+    FEATURE: imagenet
+    LR: 1e-3
+    ALPHA: 1.0
+    FREEZE: True
+  
+  ADVNET:
+    PATH: best_models/finernet-cub-class-resnet50-327.pt
+    BS: 128
+    EPOCH: 40
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 1e-6

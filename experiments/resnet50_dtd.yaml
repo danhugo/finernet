@@ -1,0 +1,28 @@
+DATA:
+  DATASET: dtd
+  FULL_PATH: data/dtd/images
+  TRAIN_PATH: data/dtd/train
+  TEST_PATH: data/dtd/test
+  NUM_CLASSES: 47
+  FAISS_TRAIN_FILE: faiss/dtd/train_nns_top7_resnet50.npy
+  FAISS_TEST_FILE: faiss/dtd/test_nns_resnet50.npy
+  AUG_TRAIN_DATA_PATH: data/dtd/train_nns_top7_resnet50
+
+EXP:
+  MODEL: resnet50
+  CLASS:
+    PATH: best_models/class-dtd-resnet50-imagenet-325.pt
+    BS: 128
+    EPOCH: 100
+    FEATURE: mix
+    LR: 5e-4
+    ALPHA: 1.0
+    FREEZE: True
+  
+  ADVNET:
+    PATH: best_models/finernet-dtd-class-resnet50-731.pt
+    EPOCH: 20
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7

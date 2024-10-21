@@ -1,0 +1,30 @@
+DATA:
+  DATASET: car
+  FULL_PATH: data/car/images
+  TRAIN_PATH: data/car/train
+  TEST_PATH: data/car/test
+  NUM_CLASSES: 196
+  FAISS_TRAIN_FILE: faiss/car/train_nns_top7_resnet50.npy
+  FAISS_TEST_FILE: faiss/car/test_nns_resnet50.npy
+  AUG_TRAIN_DATA_PATH: data/car/train_nns_top7_resnet50
+
+EXP:
+  MODEL: resnet50
+  CLASS:
+    PATH: best_models/class-car-resnet50-imagenet-295.pt
+    BS: 128
+    EPOCH: 100
+    FEATURE: mix
+    LR: 1e-2
+    ALPHA: 0.2
+    FREEZE: True
+  
+  ADVNET:
+    PATH: best_models/finernet-car-class-resnet50-739.pt
+    BS: 128
+    EPOCH: 40
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 4e-4

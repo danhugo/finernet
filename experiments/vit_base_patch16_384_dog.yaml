@@ -1,0 +1,30 @@
+DATA:
+  DATASET: dog
+  FULL_PATH: data/dog/Images
+  TRAIN_PATH: data/dog/train
+  TEST_PATH: data/dog/test
+  NUM_CLASSES: 120
+  FAISS_TRAIN_FILE: faiss/dog/train_nns_top7_vit_base_patch16_384.npy
+  FAISS_TEST_FILE: faiss/dog/test_nns_vit_base_patch16_384.npy
+  AUG_TRAIN_DATA_PATH: data/dog/train_nns_top7_vit_base_patch16_384
+
+EXP:
+  MODEL: 'vit_base_patch16_384'
+  CLASS:
+    PATH: best_models/class-dog-vit_base_patch16_384-imagenet-411.pt
+    BS: 64
+    EPOCH: 100
+    FEATURE: mix
+    LR: 2e-4
+    ALPHA: 0.8
+    FREEZE: True
+  
+  ADVNET:
+    PATH: best_models/finernet-dog-class-vit_base_patch16_384-420.pt
+    BS: 64
+    EPOCH: 20
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 4e-4

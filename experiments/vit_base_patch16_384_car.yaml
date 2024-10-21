@@ -1,0 +1,30 @@
+DATA:
+  DATASET: car
+  FULL_PATH: data/car/images
+  TRAIN_PATH: data/car/train
+  TEST_PATH: data/car/test
+  NUM_CLASSES: 196
+  FAISS_TRAIN_FILE: faiss/car/train_nns_top7_vit_base_patch16_384.npy
+  FAISS_TEST_FILE: faiss/car/test_nns_vit_base_patch16_384.npy
+  AUG_TRAIN_DATA_PATH: data/car/train_nns_top7_vit_base_patch16_384
+
+EXP:
+  MODEL: 'vit_base_patch16_384'
+  CLASS:
+    PATH: best_models/class-car-vit_base_patch16_384-imagenet-450.pt
+    BS: 64
+    EPOCH: 100
+    FEATURE: mix
+    LR: 2e-3
+    ALPHA: 0.2
+    FREEZE: True
+  
+  ADVNET:
+    PATH: best_models/finernet-car-class-vit_base_patch16_384-451.pt
+    BS: 64
+    EPOCH: 20
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 4e-4

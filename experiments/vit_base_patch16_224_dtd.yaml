@@ -1,0 +1,28 @@
+DATA:
+  DATASET: dtd
+  FULL_PATH: data/dtd/images
+  TRAIN_PATH: data/dtd/train
+  TEST_PATH: data/dtd/test
+  NUM_CLASSES: 47
+  FAISS_TRAIN_FILE: faiss/dtd/train_nns_top7_vit_base_patch16_224.npy
+  FAISS_TEST_FILE: faiss/dtd/test_nns_vit_base_patch16_224.npy
+  AUG_TRAIN_DATA_PATH: data/dtd/train_nns_top7_vit_base_patch16_224
+
+EXP:
+  MODEL: 'vit_base_patch16_224'
+  CLASS:
+    PATH: best_models/class-dtd-vit_base_patch16_224-imagenet-508.pt
+    BS: 128
+    EPOCH: 100
+    FEATURE: mix
+    LR: 5e-4
+  
+  ADVNET:
+    PATH: best_models/finernet-dtd-class-vit_base_patch16_224-509.pt
+    BS: 64
+    EPOCH: 20
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 4e-4

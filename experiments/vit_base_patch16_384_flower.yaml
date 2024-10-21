@@ -1,0 +1,28 @@
+DATA:
+  DATASET: flower
+  FULL_PATH: data/flowers/jpg
+  TRAIN_PATH: data/flowers/train
+  TEST_PATH: data/flowers/test
+  NUM_CLASSES: 102
+  FAISS_TRAIN_FILE: faiss/dog/train_nns_top7_vit_base_patch16_384.npy
+  FAISS_TEST_FILE: faiss/dog/test_nns_vit_base_patch16_384.npy
+  AUG_TRAIN_DATA_PATH: data/dog/train_nns_top7_vit_base_patch16_384
+
+EXP:
+  MODEL: 'vit_base_patch16_384'
+  CLASS:
+    PATH: best_models/class-dog-vit_base_patch16_384-imagenet-411.pt
+    BS: 64
+    EPOCH: 100
+    FEATURE: imagenet
+    LR: 1e-4
+  
+  ADVNET:
+    PATH: best_models/finernet-dog-class-vit_base_patch16_384-420.pt
+    BS: 64
+    EPOCH: 20
+    FEATURE: class
+    NEG_PRED: 7
+    SAMPLE_NEG: 1
+    POS: 7
+    LR: 4e-4

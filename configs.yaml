@@ -1,0 +1,36 @@
+DATA:
+  AUG_TRAIN_DATA_PATH: data/car/train_nns_top7_resnet50
+  DATASET: car
+  FAISS_TEST_FILE: faiss/car/test_nns_resnet50.npy
+  FAISS_TRAIN_FILE: faiss/car/train_nns_top7_resnet50.npy
+  FULL_PATH: data/car/images
+  NUM_CLASSES: 196
+  TEST_PATH: data/car/test
+  TRAIN_PATH: data/car/train
+EXP:
+  ADVNET:
+    BS: 128
+    EPOCH: 40
+    FEATURE: class
+    LR: 0.0004
+    NEG_PRED: 7
+    PATH: best_models/finernet-car-class-resnet50-739.pt
+    POS: 7
+    SAMPLE_NEG: 1
+  CLASS:
+    ALPHA: 0.2
+    BS: 128
+    EPOCH: 100
+    FEATURE: mix
+    FREEZE: true
+    LR: 0.01
+    PATH: best_models/class-car-resnet50-imagenet-295.pt
+  MODEL: resnet50
+SYSTEM:
+  CUDA_VISIBLE_DEVICES: '3'
+  PROJECT_PATH: finernet
+  SEED: 42
+WANDB:
+  ENTITY: hicehehe
+  MODE: online
+  PROJECT: finernet

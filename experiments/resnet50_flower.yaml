@@ -1,0 +1,26 @@
+DATA:
+  DATASET: flower
+  FULL_PATH: data/flowers/jpg
+  TRAIN_PATH: data/flowers/train
+  TEST_PATH: data/flowers/test
+  NUM_CLASSES: 102
+  FAISS_TRAIN_FILE: faiss/flower/train_nns_top5_resnet50.npy
+  FAISS_TEST_FILE: faiss/flower/test_nns_resnet50.npy
+  AUG_TRAIN_DATA_PATH: data/flowers/train_nns_top5_resnet50
+
+EXP:
+  MODEL: resnet50
+  CLASS:
+    PATH: best_models/class-flower-resnet50-imagenet-316.pt
+    BS: 128
+    EPOCH: 100
+    FEATURE: advnet
+  
+  ADVNET:
+    PATH: best_models/finernet-flower-imagenet_finetune-resnet50-320.pt
+    BS: 128
+    EPOCH: 30
+    FEATURE: class
+    NEG_PRED: 5
+    SAMPLE_NEG: 1
+    POS: 5
